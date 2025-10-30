@@ -693,32 +693,30 @@ span{
         padding: 2rem 3%;
     }
 }
-@media(max-width:895px){
-    #menu-icon{
-        display: block;
-    }
-    .navbar{
-        position: absolute;
-        top: 100%;
-        right: 0;
-        width: 50%;
-        padding: 1rem 3%;
-        background: rgba(0, 0, 0, 0.8);
-        backdrop-filter: blur(20px);
-        border-bottom-left-radius: 2rem;
-        border-left: 2px solid var(--main-color);
-        border-bottom: 2px solid var(--main-color);
-        display: none;
-    }
-    .navbar .active{
-        display: block;
-    }
-    .navbar a{
-        display: block;
-        font-size: 2rem;
-        margin: 3rem 0;
-        color: white;
-    }
+@media (max-width:768px) {
+  #menu-icon {
+    display: block;
+  }
+  
+  .navbar {
+    position: absolute;
+    top: 60px;
+    left: -100%;
+    width: 100%;
+    background: #333;
+    flex-direction: column;
+    transition: 0.3s;
+  }
+  
+  .navbar.active {
+    left: 0;
+  }
+  
+  .navbar a {
+    margin: 10px 0;
+    text-align: center;
+  }
+}
     .home{
         flex-direction: column-reverse;
         margin: 5rem 4rem;
@@ -743,4 +741,5 @@ span{
     .skill-main{
     grid-template-columns: repeat(2, 1fr);
     }
+
 }
