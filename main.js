@@ -12,9 +12,9 @@ let offset = sec.offsetTop - 100;
 // STEP 2: Replace the 3 values below with your EmailJS credentials
 // ============================================================
 
-const EMAILJS_PUBLIC_KEY  = 'YOUR_PUBLIC_KEY';    // Account tab on emailjs.com
-const EMAILJS_SERVICE_ID  = 'YOUR_SERVICE_ID';    // Email Services tab
-const EMAILJS_TEMPLATE_ID = 'YOUR_TEMPLATE_ID';  // Email Templates tab
+const EMAILJS_PUBLIC_KEY  = 'nVxlGY3HF_qznfaPa';    // Account tab on emailjs.com
+const EMAILJS_SERVICE_ID  = 'service_zgo24dd';    // Email Services tab
+const EMAILJS_TEMPLATE_ID = 'template_6k52zwk';  // Email Templates tab
 
 // ============================================================
 
