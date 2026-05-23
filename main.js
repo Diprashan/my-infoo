@@ -1,22 +1,42 @@
+// ============== NAVBAR ==============
+const menuIcon = document.querySelector('#menu-icon');
+const navbar = document.querySelector('.navbar');
+const navLinks = document.querySelectorAll('.navbar a');
+const sections = document.querySelectorAll('section');
+const header = document.querySelector('.header');
+
+menuIcon.onclick = () => {
+    menuIcon.classList.toggle('bx-x');
+    navbar.classList.toggle('active');
+};
+
 navLinks.forEach(link => {
     link.onclick = () => {
         navbar.classList.remove('active');
         menuIcon.classList.remove('bx-x');
     }
 });
-let offset = sec.offsetTop - 100;
-// ============================================================
-// STEP 1: Paste this <script> tag in your HTML <head>
-// <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-//
-// STEP 2: Replace the 3 values below with your EmailJS credentials
-// ============================================================
 
-const EMAILJS_PUBLIC_KEY  = 'nVxlGY3HF_qznfaPa';    // Account tab on emailjs.com
-const EMAILJS_SERVICE_ID  = 'service_zgo24dd';    // Email Services tab
-const EMAILJS_TEMPLATE_ID = 'template_6k52zwk';  // Email Templates tab
+window.onscroll = () => {
+    sections.forEach(sec => {
+        let top = window.scrollY;
+        let offset = sec.offsetTop - 100;
+        let height = sec.offsetHeight;
+        let id = sec.getAttribute('id');
 
-// ============================================================
+        if (top >= offset && top < offset + height) {
+            navLinks.forEach(link => link.classList.remove('active'));
+            document.querySelector('.navbar a[href*=' + id + ']').classList.add('active');
+        }
+    });
+
+    header.classList.toggle('sticky', window.scrollY > 100);
+};
+
+// ============== EMAILJS ==============
+const EMAILJS_PUBLIC_KEY  = 'nVxlGY3HF_qznfaPa';
+const EMAILJS_SERVICE_ID  = 'service_zgo24dd';
+const EMAILJS_TEMPLATE_ID = 'template_6k52zwk';
 
 emailjs.init({ publicKey: EMAILJS_PUBLIC_KEY });
 
@@ -30,7 +50,6 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   const message = document.getElementById('message').value.trim();
   const errorEl = document.getElementById('error-msg');
 
-  // Basic validation
   if (!name || !email || !phone || !subject || !message) {
     errorEl.style.color = 'red';
     errorEl.textContent = 'Please fill in all fields.';
@@ -42,7 +61,6 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
   submitBtn.disabled = true;
   errorEl.textContent = '';
 
-  // These variable names must match your EmailJS template
   const templateParams = {
     from_name:  name,
     from_email: email,
@@ -53,17 +71,18 @@ document.getElementById('contactForm').addEventListener('submit', function (e) {
 
   emailjs.send(EMAILJS_SERVICE_ID, EMAILJS_TEMPLATE_ID, templateParams)
     .then(() => {
-      errorEl.style.color   = 'green';
-      errorEl.textContent   = '✅ Message sent! I\'ll get back to you soon.';
-      submitBtn.value       = 'Send Message';
-      submitBtn.disabled    = false;
+      errorEl.style.color = 'green';
+      errorEl.textContent = '✅ Message sent! I\'ll get back to you soon.';
+      submitBtn.value     = 'Send Message';
+      submitBtn.disabled  = false;
       document.getElementById('contactForm').reset();
     })
     .catch((err) => {
       console.error('EmailJS Error:', err);
-      errorEl.style.color   = 'red';
-      errorEl.textContent   = '❌ Something went wrong. Please try again.';
-      submitBtn.value       = 'Send Message';
-      submitBtn.disabled    = false;
+      errorEl.style.color = 'red';
+      errorEl.textContent = '❌ Something went wrong. Please try again.';
+      submitBtn.value     = 'Send Message';
+      submitBtn.disabled  = false;
     });
 });
+
